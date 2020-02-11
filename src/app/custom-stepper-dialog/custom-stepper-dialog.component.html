@@ -1,0 +1,35 @@
+<div fxLayout="column" style="height:100%;">
+    <div style="padding: 0px 20px;">
+        <h2>Create Dashboard</h2>
+    </div>
+    <div fxLayout="row" style="height: 100%;">
+        <div fxFlex=20 style="border-right: 1px solid #eee; padding: 0px 20px;">
+            <!-- (click)="onMenuClick(menu.no)" -->
+            <div *ngFor="let menu of arrMenu" class="menu" [ngClass]="{'active-menu': menu.isLatestClicked, 'complete-menu': selectedMenuNo > menu.no}" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="15px">
+                <mat-icon *ngIf="selectedMenuNo == menu.no" style="font-size: 15px;" fxLayout="row" fxLayoutAlign="center center">edit</mat-icon>
+                <mat-icon *ngIf="selectedMenuNo > menu.no" style="font-size: 15px;" fxLayout="row" fxLayoutAlign="center center">done</mat-icon>
+                <span>{{menu.title}}</span>
+            </div>
+        </div>
+        <div fxFlex=80>
+            <div [ngSwitch]="selectedMenuNo" style="height: 100%; padding: 0px 20px;">
+                <div *ngSwitchCase="0">
+                    <p>Fill primary info</p>
+                </div>
+                <div *ngSwitchCase="1">
+                    <p>Create filters</p>
+                </div>
+                <div *ngSwitchCase="2">
+                    <p>Choose theme</p>
+                </div>
+                <div *ngSwitchDefault>
+                    <p>Fill primary info</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-between center" style="padding: 20px 30px;">
+        <button mat-stroked-button (click)="onBackBtnClicked()">Back</button>
+        <button mat-raised-button color="primary" (click)="onNextBtnClicked()">Next</button>
+    </div>
+</div>
